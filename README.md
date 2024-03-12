@@ -1,52 +1,46 @@
-# free vps rdp 6h
-<h1>COMING SOON...</h1>
-<!DOCTYPE html>
-<html lang="en">
+# CHAT ONLINE!
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Flying Dots</title>
-<link rel="stylesheet" href="styles.css">
-</head>
-  <style>
-    body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  background-color: #f0f0f0;
-}
+    <title>Online Chat</title>
+    <style>
+        .chat-box {
+            width: 300px;
+            height: 200px;
+            overflow-y: scroll;
+        }
 
-.dot-container {
-  display: flex;
-}
-
-.dot {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background-color: #333;
-  margin: 5px;
-  animation: fly 2.5s infinite alternate;
-}
-
-@keyframes fly {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
+        .message {
+            margin-bottom: 5px;
+        }
     </style>
+</head>
 <body>
-<div class="dot-container">
-  <div class="dot"></div>
-  <div class="dot"></div>
-  <div class="dot"></div>
-</div>
+    <div class="chat-box" id="chat-box"></div>
+    <input type="text" id="messageInput" placeholder="Enter your message...">
+    <button onclick="sendMessage()">Send</button>
+    <button onclick="clearMessages()">Clear</button>
+
+    <script>
+        var username = "guest" + Math.floor(Math.random() * 1000);
+        
+        function sendMessage() {
+            var message = document.getElementById("messageInput").value;
+            
+            var newMessage = document.createElement("div");
+            newMessage.className = "message";
+            newMessage.textContent = username + ": " + message;
+
+            document.getElementById("chat-box").appendChild(newMessage);
+            document.getElementById("messageInput").value = "";
+        }
+
+        function clearMessages() {
+            if(username === "Admin") {
+                document.getElementById("chat-box").innerHTML = "";
+            } else {
+                alert("You are not authorized to clear messages.");
+            }
+        }
+    </script>
 </body>
 </html>
